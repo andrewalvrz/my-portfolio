@@ -1,0 +1,131 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    overflow-x: hidden;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1e1e1e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav a {
+    margin-left: 2rem;
+    font-size: 1rem;
+    text-transform: lowercase;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #f39c12;
+}
+
+/* Section Layout */
+main {
+    margin-top: 5rem;
+}
+
+section {
+    min-height: 100vh;
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #0e0c0c, #040505);
+    color: white;
+}
+
+.hero .progress {
+    width: 50%;
+    background: #1e1e1e;
+    border-radius: 10px;
+    height: 5px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #f39c12;
+    width: 0;
+    transition: width 2s ease-in-out;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero h1 span {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.hero p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #bbb;
+}
+
+.scroll-down {
+    margin-top: 2rem;
+    font-size: 2rem;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1e1e1e;
+    color: #bbb;
+}
+
+footer a {
+    color: #f39c12;
+    text-decoration: none;
+}
