@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Alvarez | Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+            overflow-x: hidden;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #1e1e1e;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav a {
+            margin-left: 2rem;
+            font-size: 1rem;
+            text-transform: lowercase;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #f39c12;
+        }
+        /* Section Layout */
+        main {
+            margin-top: 5rem;
+        }
+        section {
+            min-height: 100vh;
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #0e0c0c, #040505);
+            color: white;
+        }
+        .hero .progress {
+            width: 50%;
+            background: #1e1e1e;
+            border-radius: 10px;
+            height: 5px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #f39c12;
+            width: 0;
+            transition: width 2s ease-in-out;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero h1 span {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .hero p {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #bbb;
+        }
+        .scroll-down {
+            margin-top: 2rem;
+            font-size: 2rem;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #1e1e1e;
+            color: #bbb;
+        }
+        footer a {
+            color: #f39c12;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AA</div>
+        <nav>
+            <a href="#home">home.</a>
+            <a href="#projects">projects.</a>
+            <a href="#about">about me.</a>
+            <a href="#blog">personal blog.</a>
+            <a href="#resume">resume.</a>
+        </nav>
+    </header>
+
+    <main id="dynamic-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="progress">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <h1 id="typing-text"></h1>
+            <p>Got something to have a conversation on? <a href="mailto:andrew@example.com">Ping me</a>.</p>
+            <div class="scroll-down" onclick="scrollToSection('projects')">↓</div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Here are some of my personal projects.</p>
+        </section>
+
+
+        <!-- Resume Section -->
+        <section id="resume">
+            <h2>Resume</h2>
+            <p>You can <a href="resume.pdf" target="_blank">download my resume</a> here!</p>
+        </section>
+
+        <!-- About me Section -->
+        <section id="about">
+            <h2>About Me </h2>
+            <p>Coming soon!.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2025 Andrew Alvarez | <a href="#contact">Contact Me</a>
+    </footer>
+
+    <script>
+        // Smooth Scroll Function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Add click event listeners for nav links
+        document.querySelectorAll("nav a").forEach(link => {
+            link.addEventListener("click", event => {
+                event.preventDefault();
+                const targetId = link.getAttribute("href").substring(1); // Remove the "#" from the href
+                scrollToSection(targetId);
+            });
+        });
+
+        // Typing effect
+        const phrases = ["I am Andrew Alvarez " , "I am a Full Stack developer.","Embedded Developer", "I build interactive projects.",];
+        let i = 0;
+        let j = 0;
+        let currentPhrase = [];
+        const typingSpeed = 100;
+        const erasingSpeed = 50;
+        const typingText = document.getElementById("typing-text");
+
+        function loopTyping() {
+            if (i < phrases.length) {
+                if (j <= phrases[i].length) {
+                    currentPhrase.push(phrases[i][j]);
+                    j++;
+                    typingText.textContent = currentPhrase.join("");
+                    setTimeout(loopTyping, typingSpeed);
+                } else {
+                    setTimeout(() => {
+                        loopErasing();
+                    }, 1000);
+                }
+            } else {
+                i = 0;
+                loopTyping();
+            }
+        }
+
+        function loopErasing() {
+            if (j > 0) {
+                currentPhrase.pop();
+                j--;
+                typingText.textContent = currentPhrase.join("");
+                setTimeout(loopErasing, erasingSpeed);
+            } else {
+                i++;
+                loopTyping();
+            }
+        }
+
+        loopTyping();
+
+        // Progress Bar Animation
+        const progressBar = document.getElementById("progress-bar");
+        setTimeout(() => {
+            progressBar.style.width = "46%";
+        }, 500);
+    </script>
+</body>
+</html>
